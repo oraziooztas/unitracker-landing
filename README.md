@@ -1,79 +1,99 @@
 # UniTracker Landing Page
 
-Landing page per validare l'idea UniTracker - tool per studenti universitari che traccia esami, CFU e scadenze.
+A conversion-optimized landing page for UniTracker, a tool for university students to track exams, credits (CFU), and deadlines. Built to validate the product idea through email waitlist sign-ups before development.
 
-## Stack
+## Features
 
-- Next.js 16
-- Tailwind CSS
-- shadcn/ui
-- TypeScript
+- **Hero Section:** Clear value proposition with waitlist sign-up form and social proof counter
+- **Pain Points Section:** Three common student struggles (scattered spreadsheets, forgotten deadlines, no clear overview)
+- **Features Showcase:** Three core product capabilities (real-time credit dashboard, automatic reminders, instant weighted GPA calculator with what-if simulations)
+- **Call-to-Action:** Secondary sign-up section with dark variant styling
+- **Waitlist API:** Server-side email capture endpoint with JSON file storage
+- **Responsive Design:** Fully responsive layout for mobile and desktop
+- **Vercel-Ready:** Optimized for one-click deployment on Vercel
 
-## Sviluppo locale
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 3 + tailwindcss-animate
+- **UI Components:** shadcn/ui (Radix UI + class-variance-authority)
+- **Icons:** Lucide React
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 18
+
+### Installation
 
 ```bash
+git clone <repository-url>
+cd unitracker-landing
 npm install
-npm run dev
 ```
 
-Apri [http://localhost:3000](http://localhost:3000)
+### Running the App
 
-## Deploy su Vercel
+```bash
+# Development server
+npm run dev
 
-### Metodo 1: Deploy automatico
+# Production build
+npm run build
+npm start
+```
 
-1. Crea un account su [Vercel](https://vercel.com)
-2. Clicca "New Project"
-3. Importa il repository GitHub
-4. Vercel rileva automaticamente Next.js e configura il deploy
+Open [http://localhost:3000](http://localhost:3000) to view the landing page.
 
-### Metodo 2: CLI Vercel
+### Deploy to Vercel
 
+**Option 1 -- Dashboard:**
+1. Create an account on [Vercel](https://vercel.com)
+2. Click "New Project"
+3. Import the GitHub repository
+4. Vercel auto-detects Next.js and deploys
+
+**Option 2 -- CLI:**
 ```bash
 npm i -g vercel
 vercel
 ```
 
-## API Waitlist
-
-L'endpoint `/api/waitlist` salva le email in un file JSON locale (`data/waitlist.json`).
-
-**Per produzione**, considera:
-- **Supabase**: Aggiungi variabile `SUPABASE_URL` e `SUPABASE_KEY`
-- **Google Sheets**: Usa Google Sheets API
-- **Database**: PostgreSQL, MongoDB, etc.
-
-## Struttura
+## Project Structure
 
 ```
 unitracker-landing/
 ├── app/
-│   ├── page.tsx          # Landing page
-│   ├── layout.tsx        # Meta tags + fonts
-│   └── api/waitlist/
-│       └── route.ts      # Email capture API
+│   ├── page.tsx                 # Landing page (Hero, Pain Points, Features, CTA, Footer)
+│   ├── layout.tsx               # Root layout with meta tags and fonts
+│   ├── globals.css              # Global styles
+│   └── api/
+│       └── waitlist/
+│           └── route.ts         # Email capture API endpoint
 ├── components/
-│   ├── ui/               # shadcn components
-│   └── WaitlistForm.tsx  # Form component
+│   ├── WaitlistForm.tsx         # Email sign-up form component (light/dark variants)
+│   └── ui/                     # shadcn/ui base components
 ├── data/
-│   └── waitlist.json     # Email storage (gitignored)
-└── tailwind.config.ts
+│   └── waitlist.json           # Email storage (gitignored)
+├── tailwind.config.ts
+├── package.json
+└── tsconfig.json
 ```
 
-## Validazione
+## Waitlist API
 
-Obiettivo: **50+ iscrizioni in 7 giorni**
+The `/api/waitlist` endpoint captures email addresses and stores them in a local JSON file (`data/waitlist.json`).
 
-### Canali di promozione
-- r/universitaly
-- Gruppi Telegram studenti
-- LinkedIn
-- Instagram stories
-- Passa parola
+For production use, consider replacing with:
+- **Supabase:** Add `SUPABASE_URL` and `SUPABASE_KEY` environment variables
+- **Google Sheets:** Use Google Sheets API for low-code storage
+- **Database:** PostgreSQL, MongoDB, or any preferred database
 
-## Metriche da tracciare
+## Notes
 
-- Visite totali
-- Tasso di conversione (visite → iscrizioni)
-- Fonte traffico
-- Scroll depth
+- The landing page is designed for idea validation with a target of 50+ sign-ups in 7 days.
+- The waitlist form component supports both light and dark variants for use in different sections.
+- All content is optimized for Italian university students, addressing specific pain points like CFU tracking and weighted GPA calculations.
+- The page includes semantic HTML and proper meta tags for SEO.
